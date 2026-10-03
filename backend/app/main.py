@@ -311,14 +311,19 @@ def get_dashboard_overview(user_role: str = "manager", db: Session = Depends(get
 @app.post("/api/ledger/upload")
 async def upload_ledger_image(file: UploadFile = File(...), db: Session = Depends(get_db)):
     """
-    Simulates / processes image upload via Multimodal Vision (Gemini Flash via OpenRouter),
+    Processes image upload via Multimodal Vision (Gemini Flash via OpenRouter),
     runs formula verification, and records ledger entry.
     """
     contents = await file.read()
     
-    file_location = os.path.join(UPLOAD_DIR, file.filename)
-    with open(file_location, "wb") as f:
-        f.write(contents)
+    file_location = None
+    try:
+        os.makedirs(UPLOAD_DIR, exist_ok=True)
+        file_location = os.path.join(UPLOAD_DIR, file.filename)
+        with open(file_location, "wb") as f:
+            f.write(contents)
+    except Exception as e:
+        print(f"[Upload] Skipping local file write on serverless filesystem: {e}")
 
     data = extract_ledger_data(contents)
     

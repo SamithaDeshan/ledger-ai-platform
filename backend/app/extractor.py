@@ -60,7 +60,6 @@ def extract_ledger_data(image_bytes: bytes) -> dict:
                         ],
                     }
                 ],
-                response_format={"type": "json_object"},
                 temperature=0.1
             )
 
