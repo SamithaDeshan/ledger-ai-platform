@@ -82,7 +82,7 @@ export default function Navbar({ cashierBalance, userRole, setUserRole, user, on
               className="flex items-center gap-1.5 bg-slate-900 hover:bg-slate-800 text-indigo-300 font-semibold text-xs px-3.5 py-2.5 rounded-xl border border-indigo-500/30 transition-all"
             >
               <Lock className="w-3.5 h-3.5 text-indigo-400" />
-              OTP Login
+              Login
             </button>
           )}
 

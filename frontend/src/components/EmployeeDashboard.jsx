@@ -83,7 +83,7 @@ export default function EmployeeDashboard({ todayStatus, onUploadClick }) {
           <div className="space-y-1 text-center sm:text-left">
             <h4 className="text-sm font-bold text-white">Snap & Upload Today's Ledger Sheet</h4>
             <p className="text-xs text-slate-400">
-              Upload photo directly here or via your Telegram Bot. Gemini Flash will automatically extract and verify your closing balance.
+              Upload photo directly here. Gemini Flash will automatically extract and verify your closing balance.
             </p>
           </div>
           <button
@@ -93,20 +93,6 @@ export default function EmployeeDashboard({ todayStatus, onUploadClick }) {
             <UploadCloud className="w-4 h-4" />
             Upload Photo Now
           </button>
-        </div>
-
-        {/* Telegram Submission Guide */}
-        <div className="border-t border-slate-800 pt-6 space-y-3">
-          <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400 flex items-center gap-2">
-            <Send className="w-3.5 h-3.5 text-indigo-400" />
-            Telegram Bot Submission Instructions
-          </h4>
-          <ol className="list-decimal list-inside space-y-2 text-xs text-slate-300 bg-slate-900/60 p-4 rounded-xl border border-slate-800/80">
-            <li>Open your official company Telegram app and search for <strong className="text-indigo-400">@LedgerAIBot</strong>.</li>
-            <li>Snap a clear picture of the physical ledger sheet showing Opening Cash, Inflows, Outflows, and Closing Balance.</li>
-            <li>Send the photo in chat. Gemini 2.0 Flash will extract all figures into strict JSON in under 3 seconds.</li>
-            <li>Click <strong className="text-emerald-400">✅ Confirm & Save</strong> on the Telegram inline keyboard to commit directly to this dashboard.</li>
-          </ol>
         </div>
       </div>
     </div>

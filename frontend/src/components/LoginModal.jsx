@@ -61,8 +61,8 @@ export default function LoginModal({ isOpen, onClose, onLoginSuccess }) {
           <div className="w-12 h-12 rounded-2xl bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 flex items-center justify-center mx-auto">
             <Lock className="w-6 h-6" />
           </div>
-          <h3 className="text-xl font-extrabold text-white">LedgerAI OTP Security Login</h3>
-          <p className="text-xs text-slate-400">Authenticate via Telegram Bot One-Time Password</p>
+          <h3 className="text-xl font-extrabold text-white">LedgerAI Security Login</h3>
+          <p className="text-xs text-slate-400">Authenticate via One-Time Password</p>
         </div>
 
         {/* Step 1: Telegram ID Input */}
@@ -70,7 +70,7 @@ export default function LoginModal({ isOpen, onClose, onLoginSuccess }) {
           <form onSubmit={handleRequestOtp} className="space-y-4">
             <div>
               <label className="text-xs font-bold text-slate-300 block mb-1">
-                Enter Your Telegram User ID
+                Enter Your Employee ID
               </label>
               <input
                 type="number"
@@ -98,7 +98,7 @@ export default function LoginModal({ isOpen, onClose, onLoginSuccess }) {
               className="w-full bg-gradient-to-r from-indigo-600 to-blue-600 hover:from-indigo-500 hover:to-blue-500 text-white font-bold text-xs py-3 rounded-xl shadow-lg shadow-indigo-500/25 flex items-center justify-center gap-2 transition-all"
             >
               {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Send className="w-4 h-4" />}
-              Send OTP Code to Telegram
+              Send OTP Code
             </button>
           </form>
         )}
@@ -110,7 +110,7 @@ export default function LoginModal({ isOpen, onClose, onLoginSuccess }) {
               <div className="bg-indigo-950/40 border border-indigo-500/30 rounded-xl p-3 text-xs text-indigo-300 space-y-1">
                 <p className="font-semibold flex items-center gap-1.5 text-indigo-200">
                   <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-                  OTP Dispatched to Telegram Chat
+                  OTP Dispatched Successfully
                 </p>
                 <p className="text-slate-400 text-[11px]">
                   User: <strong>{otpInfo.user_name}</strong> ({otpInfo.role.toUpperCase()})

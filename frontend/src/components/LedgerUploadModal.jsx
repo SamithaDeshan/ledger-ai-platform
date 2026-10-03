@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { X, Upload, Sparkles, CheckCircle2, AlertTriangle, Loader2 } from 'lucide-react';
 import axios from 'axios';
 
-export default function LedgerUploadModal({ isOpen, onClose, onUploadSuccess }) {
+export default function LedgerUploadModal({ isOpen, onClose, onUploadSuccess, currentUser }) {
   const [selectedFile, setSelectedFile] = useState(null);
   const [previewUrl, setPreviewUrl] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -30,6 +30,9 @@ export default function LedgerUploadModal({ isOpen, onClose, onUploadSuccess }) 
 
     const formData = new FormData();
     formData.append('file', selectedFile);
+    if (currentUser?.id) {
+      formData.append('uploaded_by_id', currentUser.id);
+    }
 
     try {
       const res = await axios.post('/api/ledger/upload', formData, {

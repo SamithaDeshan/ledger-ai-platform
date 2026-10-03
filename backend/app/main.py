@@ -309,7 +309,11 @@ def get_dashboard_overview(user_role: str = "manager", db: Session = Depends(get
     }
 
 @app.post("/api/ledger/upload")
-async def upload_ledger_image(file: UploadFile = File(...), db: Session = Depends(get_db)):
+async def upload_ledger_image(
+    file: UploadFile = File(...),
+    uploaded_by_id: int = Form(None),
+    db: Session = Depends(get_db)
+):
     """
     Processes image upload via Multimodal Vision (Gemini Flash via OpenRouter),
     runs formula verification, and records ledger entry.
@@ -347,6 +351,8 @@ async def upload_ledger_image(file: UploadFile = File(...), db: Session = Depend
         ledger.discrepancy = discrepancy
         ledger.status = "confirmed" if discrepancy == 0 else "pending"
         ledger.image_storage_url = f"/uploads/{file.filename}"
+        if uploaded_by_id:
+            ledger.uploaded_by = uploaded_by_id
         db.query(Transaction).filter(Transaction.ledger_id == ledger.id).delete()
     else:
         ledger = Ledger(
@@ -356,7 +362,8 @@ async def upload_ledger_image(file: UploadFile = File(...), db: Session = Depend
             calculated_balance=calculated_closing,
             discrepancy=discrepancy,
             status="confirmed" if discrepancy == 0 else "pending",
-            image_storage_url=f"/uploads/{file.filename}"
+            image_storage_url=f"/uploads/{file.filename}",
+            uploaded_by=uploaded_by_id
         )
         db.add(ledger)
         db.commit()

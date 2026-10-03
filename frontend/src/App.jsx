@@ -158,6 +158,7 @@ export default function App() {
         isOpen={isUploadOpen}
         onClose={() => setIsUploadOpen(false)}
         onUploadSuccess={fetchDashboardData}
+        currentUser={currentUser}
       />
 
       {/* Telegram OTP Login Modal */}
