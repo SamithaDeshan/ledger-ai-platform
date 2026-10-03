@@ -67,9 +67,6 @@ def seed_initial_data():
                 Payroll(employee_name="Nimal Silva", base_salary=58000.0, pay_day_of_month=30, status="unpaid"),
                 Payroll(employee_name="Kamani Jayasinghe", base_salary=45000.0, pay_day_of_month=5, status="paid"),
             ]
-                Payroll(employee_name="Nimal Silva", base_salary=58000.0, pay_day_of_month=30, status="unpaid"),
-                Payroll(employee_name="Kamani Jayasinghe", base_salary=45000.0, pay_day_of_month=5, status="paid"),
-            ]
             db.add_all(staff_payroll)
             db.commit()
 

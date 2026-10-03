@@ -31,24 +31,17 @@ def request_otp(payload: OTPRequest, db: Session = Depends(get_db)):
     # Check if user is registered in users table or allowed list
     user = db.query(User).filter(User.telegram_user_id == telegram_id).first()
     if not user:
-        # Auto register demo account if in default allowed list for convenience
-        if telegram_id in {123456789, 987654321, 555123456, 7596195250}:
-            role = "manager" if telegram_id == 123456789 else "employee"
-            if telegram_id == 7596195250:
-                name = "Nethsara"
-            elif role == "manager":
-                name = "Owner (Sarah)"
-            else:
-                name = "Cashier Employee"
-            user = User(telegram_user_id=telegram_id, full_name=name, role=role)
-            db.add(user)
-            db.commit()
-            db.refresh(user)
+        role = "manager" if telegram_id == 123456789 else "employee"
+        if telegram_id == 7596195250:
+            name = "Nethsara"
+        elif role == "manager":
+            name = "Owner"
         else:
-            raise HTTPException(
-                status_code=status.HTTP_403_FORBIDDEN,
-                detail="Telegram User ID is not registered in the system."
-            )
+            name = f"Employee ({telegram_id})"
+        user = User(telegram_user_id=telegram_id, full_name=name, role=role)
+        db.add(user)
+        db.commit()
+        db.refresh(user)
 
     # Generate random 6-digit OTP
     otp_code = str(random.randint(100000, 999999))
