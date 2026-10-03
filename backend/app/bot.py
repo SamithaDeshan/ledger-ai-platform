@@ -6,7 +6,7 @@ from app.database import SessionLocal
 from app.models import Ledger, Transaction, User
 
 TELEGRAM_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN", "")
-ALLOWED_USER_IDS = {123456789, 987654321, 555123456}
+ALLOWED_USER_IDS = {123456789, 987654321, 555123456, 7596195250}
 
 def save_staged_ledger_to_db(staged: dict, telegram_user_id: int = 123456789):
     """

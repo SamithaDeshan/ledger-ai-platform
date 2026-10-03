@@ -81,7 +81,7 @@ export default function LoginModal({ isOpen, onClose, onLoginSuccess }) {
                 className="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-indigo-500 transition-colors"
               />
               <p className="text-[11px] text-slate-500 mt-1">
-                Demo Accounts: <span className="text-indigo-400 cursor-pointer font-mono" onClick={() => setTelegramId('123456789')}>123456789 (Manager)</span> • <span className="text-emerald-400 cursor-pointer font-mono" onClick={() => setTelegramId('987654321')}>987654321 (Employee)</span>
+                Accounts: <span className="text-indigo-400 cursor-pointer font-mono" onClick={() => setTelegramId('123456789')}>123456789 (Owner)</span> • <span className="text-emerald-400 cursor-pointer font-mono" onClick={() => setTelegramId('7596195250')}>7596195250 (Nethsara)</span>
               </p>
             </div>
 

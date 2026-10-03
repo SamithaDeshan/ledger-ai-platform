@@ -41,23 +41,32 @@ def seed_initial_data():
         if db.query(User).count() == 0:
             mgr = User(
                 telegram_user_id=123456789,
-                full_name="Sarah Perera (Manager)",
+                full_name="Sarah Perera (Owner)",
                 role="manager",
                 is_active=True
             )
-            emp = User(
+            emp1 = User(
+                telegram_user_id=7596195250,
+                full_name="Nethsara",
+                role="employee",
+                is_active=True
+            )
+            emp2 = User(
                 telegram_user_id=987654321,
                 full_name="Kasun Fernando (Cashier)",
                 role="employee",
                 is_active=True
             )
-            db.add_all([mgr, emp])
+            db.add_all([mgr, emp1, emp2])
             db.commit()
 
         # 2. Seed Payroll if empty
         if db.query(Payroll).count() == 0:
             staff_payroll = [
-                Payroll(employee_name="Kasun Fernando", base_salary=65000.0, pay_day_of_month=28, status="pending"),
+                Payroll(employee_name="Nethsara", base_salary=65000.0, pay_day_of_month=28, status="pending"),
+                Payroll(employee_name="Nimal Silva", base_salary=58000.0, pay_day_of_month=30, status="unpaid"),
+                Payroll(employee_name="Kamani Jayasinghe", base_salary=45000.0, pay_day_of_month=5, status="paid"),
+            ]
                 Payroll(employee_name="Nimal Silva", base_salary=58000.0, pay_day_of_month=30, status="unpaid"),
                 Payroll(employee_name="Kamani Jayasinghe", base_salary=45000.0, pay_day_of_month=5, status="paid"),
             ]

@@ -32,9 +32,14 @@ def request_otp(payload: OTPRequest, db: Session = Depends(get_db)):
     user = db.query(User).filter(User.telegram_user_id == telegram_id).first()
     if not user:
         # Auto register demo account if in default allowed list for convenience
-        if telegram_id in {123456789, 987654321, 555123456}:
+        if telegram_id in {123456789, 987654321, 555123456, 7596195250}:
             role = "manager" if telegram_id == 123456789 else "employee"
-            name = "Manager (Sarah)" if role == "manager" else "Cashier Employee"
+            if telegram_id == 7596195250:
+                name = "Nethsara"
+            elif role == "manager":
+                name = "Owner (Sarah)"
+            else:
+                name = "Cashier Employee"
             user = User(telegram_user_id=telegram_id, full_name=name, role=role)
             db.add(user)
             db.commit()
