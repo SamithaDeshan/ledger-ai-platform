@@ -135,17 +135,17 @@ export default function App() {
           <>
             {userRole === 'manager' ? (
               <DashboardOverview
-                metrics={dashboardData.metrics}
-                cashflow={dashboardData.cashflow}
-                expenseBreakdown={dashboardData.expenseBreakdown}
-                payrollAlerts={dashboardData.payrollAlerts}
-                masterLedgers={dashboardData.masterLedgers}
+                metrics={dashboardData?.metrics || { cashierBalance: 0, monthlyTurnover: 0, netMargin: 0, totalInflow: 0, totalOutflow: 0, pendingLedgersCount: 0 }}
+                cashflow={dashboardData?.cashflow || []}
+                expenseBreakdown={dashboardData?.expenseBreakdown || []}
+                payrollAlerts={dashboardData?.payrollAlerts || []}
+                masterLedgers={dashboardData?.masterLedgers || []}
                 onStatusUpdate={handleStatusUpdate}
                 onEditTransaction={(tx) => setEditingTransaction(tx)}
               />
             ) : (
               <EmployeeDashboard
-                todayStatus={dashboardData.todayStatus}
+                todayStatus={dashboardData?.todayStatus || { date: new Date().toISOString().split('T')[0], is_uploaded: false, status: 'pending', cashier_balance: 0 }}
                 onUploadClick={() => setIsUploadOpen(true)}
               />
             )}

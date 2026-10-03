@@ -30,11 +30,11 @@ import {
 const PALETTE = ['#2563eb', '#10b981', '#f59e0b', '#ef4444', '#8b5cf6', '#ec4899', '#06b6d4'];
 
 export default function DashboardOverview({
-  metrics,
-  cashflow,
-  expenseBreakdown,
-  payrollAlerts,
-  masterLedgers,
+  metrics = { cashierBalance: 0, monthlyTurnover: 0, netMargin: 0, totalInflow: 0, totalOutflow: 0, pendingLedgersCount: 0 },
+  cashflow = [],
+  expenseBreakdown = [],
+  payrollAlerts = [],
+  masterLedgers = [],
   onStatusUpdate,
   onEditTransaction
 }) {
