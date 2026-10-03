@@ -48,7 +48,7 @@ def seed_initial_data():
             emp1 = User(
                 telegram_user_id=7596195250,
                 full_name="Nethsara",
-                role="employee",
+                role="manager",
                 is_active=True
             )
             emp2 = User(
